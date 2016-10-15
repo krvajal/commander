@@ -21,13 +21,9 @@ app.use('/bower_components', express.static(__dirname + '/bower_components'));
 
 
  // application -------------------------------------------------------------
-  app.get('*', function(req, res) {
-        res.sendfile('./app/index.html'); // load the single view file (angular will handle the page changes on the front-end)
+app.get('/', function(request, response) {
+  response.render('index.html');
 });
-app.listen(app.get('port'), function() {
-  console.log('Node app is running on port', app.get('port'));
-});
-
 
 
 app.listen(app.get("port"), function() {
