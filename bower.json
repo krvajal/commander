@@ -13,7 +13,8 @@
     "angular-sanitize": "^1.3.0",
     "angular-touch": "^1.3.0",
     "angular-ui-sortable": "^0.14.3",
-    "font-awesome": "^4.6.3"
+    "font-awesome": "^4.6.3",
+    "anguar-material":"^1.1.1"
   },
   "devDependencies": {
     "mockfirebase": "0.11.0",
