@@ -1,0 +1,214 @@
+<div style="min-height: 100vh" >
+  <div class="row">
+  <div style="display: flex; align-items: baseline;">
+
+    <h1>NAME: {{machine.Name}}</h1>
+    <md-button class="md-raised md-hue-2 " style="margin-left: auto"  aria-label="DELETE" >  <i class="fa fa-trash fa-lg" style="margin-right: 2px"></i>DELETE</md-button>
+  </div>
+
+  <p class="bg-success padding-10">Your machine is up and running</p>
+
+
+<md-tabs>
+  <md-tab label="General">
+  <md-tab-body >
+
+      <div style="margin-top: 10px">
+          <div class="info-panel">
+            <strong>Machine ID:</strong>
+            <span style="margin-left: 10px">  {{ machine.$id}}</span>
+            <md-button class="md-raised"   aria-label="Copy" md-no-ink="true|false" md-ripple-size="full" style="margin-left: auto">Copy to clipboard</md-button>
+          </div>
+          <div class="info-panel">
+            <strong>Location:</strong>
+            <span style="margin-left: 10px">  {{ machine.Location}}</span>
+
+          </div>
+          <div class="info-panel">
+            <strong>App  Version:</strong>
+            <span style="margin-left: 10px">  {{ machine.version}}</span>
+
+          </div>
+      </div>
+
+
+  </md-tab-body>
+
+
+
+  </md-tab>
+  <md-tab label="Normal Track"></md-tab>
+  <md-tab label="Fast Track">
+
+    <md-tab-body>
+
+        <md-button class="md-accent md-raised" ng-click="addFastQuestion($event)">ADD QUESTION</md-button>
+        <ul style="margin-top: 20px" ui-sortable="FastSortableOptions" ng-model="fast_questions" class="list-group">
+        <li ng-repeat="item in fast_questions"class="list-group-item">
+          <div style="margin: 2px; display: flex;align-items:  center;" >
+            <i class="fa fa-bars fa-1x "  style="margin-right: 4px" aria-hidden="true"></i>  {{ item.Name  | uppercase}}
+            <div style="margin-left: auto">
+
+            <i class="fa fa-forward fa-lg"  aria-hidden="true"></i>
+              <i class="fa fa-plane fa-lg " ng-if="item.MovePlane"  style="margin-right: 4px" aria-hidden="true"></i>
+
+
+             <!--  <button style="margin-left: auto" data-toggle="modal" data-target="#edit-fast-question-modal"> <i class="fa fa-edit fa-1x "></i></button> -->
+              <button style="margin-left: auto" class="btn btn-danger  btn-sm" ng-click="delete_question($index)">DELETE</button>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </md-tab-body>
+
+
+  </md-tab>
+</md-tabs>
+
+
+
+  <div class="tab-content clearfix">
+
+    <div ng-class="{'tab-pane':true,'active':selected==1}" >
+    </div>
+    <div ng-class="{'tab-pane':true,'active':selected==3,'margin-10':true}" >
+      <div class="row">
+      <div>
+        <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#add-fast-question-modal" ng-click="addFastQuestion($event)"> ADD QUESTION</button>
+
+        <small><strong>Info: </strong>Drag the questions to reorder </small>
+      </div>
+
+      <div class="margin-10"></div>
+
+      <ul style="margin-top: 20px" ui-sortable="FastSortableOptions" ng-model="fast_questions" class="list-group">
+        <li ng-repeat="item in fast_questions"class="list-group-item">
+          <div style="margin: 2px; display: flex;align-items:  center;" >
+            <i class="fa fa-bars fa-1x "  style="margin-right: 4px" aria-hidden="true"></i>  {{ item.Name  | uppercase}}
+            <div style="margin-left: auto">
+
+            <i class="fa fa-forward fa-lg"  aria-hidden="true"></i>
+              <i class="fa fa-plane fa-lg " ng-if="item.MovePlane"  style="margin-right: 4px" aria-hidden="true"></i>
+
+
+             <!--  <button style="margin-left: auto" data-toggle="modal" data-target="#edit-fast-question-modal"> <i class="fa fa-edit fa-1x "></i></button> -->
+              <button style="margin-left: auto" class="btn btn-danger  btn-sm" ng-click="delete_question($index)">DELETE</button>
+            </div>
+          </div>
+        </li>
+      </ul>
+      </div>
+    </div>
+    <div ng-class="{'tab-pane':true,'active':selected==2}">
+      info 3
+    </div>
+  </div>
+
+
+
+
+
+
+</div>
+<div id="add-fast-question-modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+     <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">EDIT QUESTION</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal">
+
+
+          <div class="form-group">
+            <label for="question_type" class="col-sm-2 control-label"></label>
+            <div class="col-sm-10">
+                <md-input-container flex="1">
+
+                  <select name="type" ng-model="NewQuestion.QuestionType" required>
+                     <option ng-repeat="q in types"  ng-value="q.$index">
+                     {{q}}</option>
+                  </select>
+                </md-input-container>
+
+            </div>
+          </div>
+          <div class="form-group"  ng-if="NewQuestion.QuestionType == '11'">
+            <label for="question_text" class="col-sm-2 control-label">TEXT</label>
+            <div class="col-sm-10">
+              <textarea class="form-control" rows="3" id="question_text"
+                ng-model="NewQuestion.Name"
+              ></textarea>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+               <md-checkbox
+              ng-model="NewQuestion.MovePlane"
+              aria-label="Checkbox 2"
+              ng-true-value="'yup'"
+              ng-false-value="'nope'"
+              class="md-warn md-align-top-left" flex>
+            Move airplane? <br/>
+            <span class="ipsum">
+              Check this if you want that the plane move on the track when the question is shown.
+            </span>
+            <br/>
+
+          </md-checkbox>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" data-dismiss="modal" ng-click="AddFastQuestion()">SAVE</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">CANCEL</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="edit-fast-question-modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">EDIT QUESTION</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal">
+          <div class="form-group">
+            <label for="question_type" class="col-sm-2 control-label">TYPE</label>
+            <div class="col-sm-10">
+              <select  class="form-control" id="question_type" placeholder="TYPE">
+                <option> CrewQuestion</option>
+                <option>DestinationQuestion</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="question_text" class="col-sm-2 control-label">TEXT</label>
+            <div class="col-sm-10">
+              <textarea class="form-control" rows="3" id="question_text"></textarea>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox"> Move airplane
+                </label>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" >SAVE</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">CANCEL</button>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>

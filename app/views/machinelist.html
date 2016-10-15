@@ -1,0 +1,63 @@
+<div style="height: 100vh">
+
+
+<div style="display: flex; align-items: baseline;">
+
+<h1 style="margin-right: auto;">Machine List</h1>
+
+<md-button class="md-raised"
+  data-toggle="modal" data-target="#add-machine-modal"> Setup new machine</md-button>
+</div>
+ <md-content layout-padding layout-wrap>
+      <md-list flex>
+
+  <md-list-item ng-href="#/machines/{{machine.$id}}" class="md-1-line" ng-repeat="machine in machines" ng-click="null">
+    <div style="display: flex; align-items: center; width: 100%">
+        <a href="#/machines/{{machine.$id}}">{{machine.Name}}</a>
+
+      <md-switch ng-model="isActive" aria-label="Finished?" style="margin-left: auto;">
+      </md-switch>
+      <i class="fa fa-ellipsis-v " style="margin-left: 5px"></i>
+
+    </div>
+
+  </md-list-item>
+  </md-list>
+  </md-content>
+
+
+
+</div>
+
+<div id="add-machine-modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Add machine</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal">
+          <div class="form-group">
+            <label for="machine_name" class="col-sm-2 control-label">Machine Name</label>
+            <div class="col-sm-10">
+              <input  ng-model="newMachine.Name" class="form-control" id="machine_name" placeholder="Enter name">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="machine_location" class="col-sm-2 control-label">Machine Location</label>
+            <div class="col-sm-10">
+              <textarea ng-model="newMachine.Location"  class="form-control" rows="3" id="machine_location"></textarea>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" ng-click ="addNewMachine()">SETUP YOUR NEW MACHINE</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="resetNewMachine()">CANCEL</button>
+      </div>
+  </div>
+</div>
