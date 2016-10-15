@@ -8,7 +8,7 @@ var bodyParser = require('body-parser');    // pull information from HTML POST (
 var methodOverride = require('method-override'); // simulate DELETE and PUT (express4)
 
 
-app.set('port', process.env.PORT || 9000);
+app.set('port', process.env.PORT ||   5000);
 
 
 app.use(methodOverride());
@@ -23,7 +23,7 @@ app.get('/', function(request, response) {
   response.render('index.html');
 });
 
-var port = 9000;
-app.listen(port, function() {
-  console.log("Listening on " + port);
+
+app.listen(app.get("port"), function() {
+  console.log("Listening on " + app.get("port"));
 });
