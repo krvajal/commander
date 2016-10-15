@@ -13,6 +13,9 @@ angular.module('sasystemCommanderApp')
     $scope.passwordLogin = function(email, pass) {
       $scope.err = null;
 
+      Auth.$authWithPassword({email: email, password: pass}, {rememberMe: true}).then(
+        redirect, showError
+      );
 
 
     };
