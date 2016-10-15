@@ -12,18 +12,22 @@ app.set('port', process.env.PORT ||   5000);
 
 
 app.use(methodOverride());
+
 app.use(express.static(__dirname + '/app'));
 app.use('/bower_components', express.static(__dirname + '/bower_components'));
-app.use('/scripts', express.static(__dirname + '/app/scripts'));
-app.use('/styles', express.static(__dirname + '/app/styles'));
-app.use('/images', express.static(__dirname + '/app/images'));
+
+
 // app.use(app.router);
 
 
-
-app.get('/', function(request, response) {
-  response.render('index.html');
+ // application -------------------------------------------------------------
+  app.get('*', function(req, res) {
+        res.sendfile('./app/index.html'); // load the single view file (angular will handle the page changes on the front-end)
 });
+app.listen(app.get('port'), function() {
+  console.log('Node app is running on port', app.get('port'));
+});
+
 
 
 app.listen(app.get("port"), function() {
