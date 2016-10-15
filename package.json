@@ -47,6 +47,6 @@
   },
   "scripts": {
     "test": "karma start test/karma.conf.js",
-    "postinstall": "bower install && grunt build"
+    "postinstall": "bower install "
   }
 }
