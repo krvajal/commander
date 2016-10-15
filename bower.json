@@ -19,6 +19,9 @@
     "mockfirebase": "0.11.0",
     "angular-mocks": "^1.3.0"
   },
+  "resolutions": {
+    "angular": "1.5.8"
+  },
   "appPath": "app",
   "moduleName": "sasystemCommanderApp"
 }
