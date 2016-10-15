@@ -20,5 +20,6 @@ angular.module('sasystemCommanderApp', [
     'firebase.auth',
     'ui.sortable',
     'firebase.checkpointArray',
-    'ngMaterial'
+    'ngMaterial',
+    'ngAria'
   ]);
