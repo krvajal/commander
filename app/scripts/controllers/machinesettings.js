@@ -84,6 +84,14 @@ angular.module('sasystemCommanderApp')
       $scope.fast_questions.checkpoint();
       }
     };
+     $scope.NormalSortableOptions = {
+      stop: function(e, ui) {
+      // save changes to firebase
+      $scope.normal_questions.saveChanges();
+      $scope.normal_questions.checkpoint();
+      }
+    };
+
 
 
     $scope.delete_question = function(index){
