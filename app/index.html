@@ -25,7 +25,7 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div class="header" ng-cloak="">
+    <div class="header" ng-cloak="" >
       <div class="navbar navbar-default" role="navigation">
         <div class="container">
           <div class="navbar-header">
@@ -40,18 +40,18 @@
             <a class="navbar-brand" href="#/">SA System Commander</a>
           </div>
 
-          <div class="collapse navbar-collapse" id="js-navbar-collapse">
+          <div class="collapse navbar-collapse" id="js-navbar-collapse" ng-controller="HeaderCtrl">
 
             <ul class="nav navbar-nav">
-              <li class="active"><a href="#/">Home</a></li>
+              <li ng-class="{ active: isActive('/home')}"><a href="#/">Home</a></li>
               <!-- //angularfire -->
 
-              <li>
-              <a ng-hide-auth="" href="#/login">Log In</a>
-              <a ng-show-auth="" href="#/account">Account</a>
+            <li ng-class="{ active: isActive('/login')}">
+              <a  ng-hide-auth="" href="#/login">Log In</a>
+              <a  ng-show-auth="" href="#/account">Account</a>
 
             </li>
-            <li ng-show-auth=""><a  href="#/machines">Machines</a></li>
+            <li ng-class="{ active: isActive('/machines')}" ng-show-auth=""><a  href="#/machines">Machines</a></li>
             </ul>
           </div>
         </div>
@@ -113,6 +113,7 @@
         <script src="scripts/controllers/machinelist.js"></script>
         <script src="scripts/controllers/machinesettings.js"></script>
         <script src="scripts/filters/anchor.js"></script>
+        <script src="scripts/controllers/header.js"></script>
         <!-- endbuild -->
         <script src="bower_components/angular-material/angular-material.min.js"></script>
 </body>

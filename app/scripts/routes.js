@@ -57,7 +57,7 @@ angular.module('sasystemCommanderApp')
   // before trying to access that route
   .config(['$routeProvider', function($routeProvider) {
     $routeProvider
-      .when('/', {
+      .when('/home', {
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
       })
@@ -69,15 +69,15 @@ angular.module('sasystemCommanderApp')
         templateUrl: 'views/account.html',
         controller: 'AccountCtrl'
       })
-      .when('/machines', {
+      .whenAuthenticated('/machines', {
         templateUrl: 'views/machinelist.html',
         controller: 'MachineListCtrl'
       })
-      .when('/machines/:id', {
+      .whenAuthenticated('/machines/:id', {
         templateUrl: 'views/machinesettings.html',
         controller: 'MachineSettingsCtrl'
       })
-      .otherwise({redirectTo: '/'});
+      .otherwise({redirectTo: '/home'});
   }])
 
   /**

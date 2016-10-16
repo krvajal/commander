@@ -1,5 +1,5 @@
-
-<h2>Login Page</h2>
+<div style="max-width: 500px; margin: 0 auto; padding: 10px 80px" class="md-whiteframe-8dp">
+<h2 style="text-align: center;">Please login</h2>
 
 <form role="form" name="form" novalidate>
   <p class="form-group">
@@ -16,8 +16,9 @@
   </p>
 
   <p>
-    <button  class="btn btn-primary" ng-click="passwordLogin(email, pass)" ng-hide="createMode">Log In</button>
+    <md-button  class="md-raised" ng-click="passwordLogin(email, pass)" ng-hide="createMode">Log In</md-button>
   </p>
 </form>
 <p ng-show="err" class="bg-danger">{{err}}</p>
 
+</div>
