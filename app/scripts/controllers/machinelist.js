@@ -11,6 +11,12 @@ angular.module('sasystemCommanderApp')
   .controller('MachineListCtrl', function ($scope, Ref, $firebaseArray) {
 
     $scope.machines = $firebaseArray(Ref.child('machines'));
+    $scope.loading = true;
+    $scope.machines.$loaded().then(function(machines){
+        $scope.loading =false;
+        console.log("loaded");
+        console.log(machines.length);
+    });
 
     $scope.newMachine = {};
     $scope.resetNewMachine = function(){

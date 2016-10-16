@@ -1,4 +1,4 @@
-<div style="height: 100vh">
+<div style="height: 100vh;max-width: 720px; margin: 0 auto">
 
 
 <div style="display: flex; align-items: baseline;">
@@ -8,21 +8,35 @@
 <md-button class="md-raised"
   data-toggle="modal" data-target="#add-machine-modal"> Setup new machine</md-button>
 </div>
- <md-content layout-padding layout-wrap>
-      <md-list flex>
 
-  <md-list-item ng-href="#/machines/{{machine.$id}}" class="md-1-line" ng-repeat="machine in machines" ng-click="null">
-    <div style="display: flex; align-items: center; width: 100%">
-        <a href="#/machines/{{machine.$id}}">{{machine.Name}}</a>
 
-      <md-switch ng-model="isActive" aria-label="Finished?" style="margin-left: auto;">
-      </md-switch>
-      <i class="fa fa-ellipsis-v " style="margin-left: 5px"></i>
+ <md-content layout-padding  >
+      <md-list flex class="md-whiteframe-1dp" ng-if="loading ==false && machines.length > 0">
 
+          <md-list-item ng-href="#/machines/{{machine.$id}}" class="md-1-line" ng-repeat="machine in machines" ng-click="null">
+            <div style="display: flex; align-items: center; width: 100%">
+                <a href="#/machines/{{machine.$id}}">{{machine.Name}}</a>
+
+              <md-switch ng-model="isActive" aria-label="Finished?" style="margin-left: auto;">
+              </md-switch>
+              <i class="fa fa-ellipsis-v " style="margin-left: 5px"></i>
+
+            </div>
+
+          </md-list-item>
+      </md-list>
+      <div ng-if="loading">
+        <md-progress-circular md-mode="indeterminate" style="margin:60px auto;">
+
+        </md-progress-circular>
+        <p style="margin: 20px auto;text-align: center;" >Loading machines ...</p>
+      </div>
+    <div ng-if="loading==false && machines.length == 0">
+       <p class="inset bg-danger" >
+    Looks like you dont have any machines added yet. Please add a new machine using the button above.
+  </p>
     </div>
 
-  </md-list-item>
-  </md-list>
   </md-content>
 
 

@@ -3640,7 +3640,7 @@ body {
   background: #cccccc;
   display: flex;
   align-items: center;
-  margin: 10px 0;
+  margin: 10px;
   padding: 10px;
   font-size: 18px;
 }
